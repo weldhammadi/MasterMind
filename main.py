@@ -42,7 +42,28 @@ def print_feedback(guess, feedback):
     #print the guess and its feedback as combination of o x and +
     #could be changed to colored squares for better visualization
     #and in the future, could be changed to a GUI
+    
     print("Your guess:")
+    
+    #add space before printing the digits
+    print("           ", end="")
+    
+    #printing the digits
+    for digit in guess:
+        print(digit, end=" ")
+    print()
+    
+    #printing the feedback
+    print("Feedback:")
+    
+    #add space before printing the feedback
+    print("           ", end="")
+    
+    for f in feedback:
+        print(f, end=" ")
+    print()
+    
+    
     
     
     
