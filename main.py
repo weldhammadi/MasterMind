@@ -13,28 +13,23 @@ def get_feedback(secret_code, guess):
     
     #initialize variables list
     feedback = ['x'] * 4
-    guess_used = [False] * 4
-    secret_used = [False] * 4
-    
-    
-    #check for exact matches
-    for index in range(4):
-        if guess[index] == secret_code[index]:
-            feedback[index] = 'o'
-            guess_used[index] = True
-            secret_used[index] = True
-    
-    
-    #check for wrong position matches        
-    for index_1 in range(4):
-        if feedback[index_1] == 'x':
-            for index_2 in range(4):
-                if not secret_used[index_2] and not guess_used[index_1]:
-                    if guess[index_1] == secret_code[index_2]:
-                        feedback[index_1] = '+'
-                        secret_used[index_2] = True
-                        break
-                    
+    secret_count = {}
+
+    # Count occurrences of each digit in the secret code
+    for digit in secret_code:
+        secret_count[digit] = secret_count.get(digit, 0) + 1
+
+    # Check for exact matches
+    for i in range(4):
+        if guess[i] == secret_code[i]:
+            feedback[i] = 'o'
+            secret_count[guess[i]] -= 1
+
+    # Check for wrong position matches
+    for i in range(4):
+        if feedback[i] == 'x' and guess[i] in secret_count and secret_count[guess[i]] > 0:
+            feedback[i] = '+'
+            secret_count[guess[i]] -= 1
                     
     return feedback
 
@@ -77,6 +72,7 @@ def main():
     #initialize the number of attempts
     lifes = 10 
     #launch the game
+    print(f"secret code: {secret_code}")
     while lifes > 0:
         
         #take input from the player
