@@ -69,15 +69,45 @@ def print_feedback(guess, feedback):
     
 def main():
     #initialize the game
-    #generate a secret code
-    #initialize the number of attempts
-    #launch the game
-    #take input from the player
-    #check the guess
-    #print the feedback
-    #check if the player won
-    #check if the player lost
-    #repeat until the player wins or loses
     print("Welcome to Mastermind!")
-
-
+    print("Try to guess the 4-digit secret code.")
+    print("Digits range from 1 to 6.")
+    #generate a secret code
+    secret_code = generate_secret_code()
+    #initialize the number of attempts
+    lifes = 10 
+    #launch the game
+    while lifes > 0:
+        
+        #take input from the player
+        guess = input(f"\nYou have {lifes} attempts remaining. Enter your guess (4 digits from 1 to 6): ")
+        
+        #validate the input
+        if not (len(guess) == 4 and all(num in '123456' for num in guess)):
+            print("Invalid input. Please enter exactly 4 digits between 1 and 6.")
+            continue
+        
+        #convert the string input to a list of integers
+        guess = [int(num) for num in guess]
+        
+        #check the guess
+        feedback = get_feedback(secret_code, guess)
+        
+        #print the feedback
+        print_feedback(guess, feedback)
+        
+        #check if the player won
+        if feedback == ['o', 'o', 'o', 'o']:
+            print("Congratulations! You guessed the secret code.")
+            print(f"The secret code was: {secret_code}")
+            break
+        
+        #decrement the number of lifes
+        lifes -= 1
+        
+    #repeat until the player wins or loses
+    else:
+        print("Sorry, you've used all your attempts.")
+        print(f"The secret code was: {secret_code}")
+    
+    
