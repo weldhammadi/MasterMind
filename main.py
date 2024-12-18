@@ -39,7 +39,9 @@ def print_feedback(guess, feedback):
     #and in the future, could be changed to a GUI
     color_map = {'o': '\033[42m', '+': '\033[43m', 'x': '\033[47m'}
     reset_color = '\033[0m'
-
+    
+    print()
+    print()
     print("Your guess:")
     
     #add space before printing the digits
@@ -60,10 +62,6 @@ def print_feedback(guess, feedback):
         print(f"{color_map[f]} ■ {reset_color}", end=" ")
     print()
     
-    
-    
-    
-    
 def main():
     #initialize the game
     print("Welcome to Mastermind!")
@@ -74,11 +72,12 @@ def main():
     #initialize the number of attempts
     lifes = 10 
     #launch the game
-    print(f"secret code: {secret_code}")
+    
     while lifes > 0:
         
         #take input from the player
-        guess = input(f"\nYou have {lifes} attempts remaining. Enter your guess (4 digits from 1 to 6): ")
+        print(f"\nYou have ♥ {lifes} ♥ attempts remaining.")
+        guess = input(f"\nEnter your guess (4 digits from 1 to 6): ")
         
         #validate the input
         if not (len(guess) == 4 and all(num in '123456' for num in guess)):
