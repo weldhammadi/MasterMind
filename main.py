@@ -37,7 +37,9 @@ def print_feedback(guess, feedback):
     #print the guess and its feedback as combination of o x and +
     #could be changed to colored squares for better visualization
     #and in the future, could be changed to a GUI
-    
+    color_map = {'o': '\033[42m', '+': '\033[43m', 'x': '\033[47m'}
+    reset_color = '\033[0m'
+
     print("Your guess:")
     
     #add space before printing the digits
@@ -45,7 +47,7 @@ def print_feedback(guess, feedback):
     
     #printing the digits
     for digit in guess:
-        print(digit, end=" ")
+            print("",digit,"", end=" ")
     print()
     
     #printing the feedback
@@ -55,7 +57,7 @@ def print_feedback(guess, feedback):
     print("           ", end="")
     
     for f in feedback:
-        print(f, end=" ")
+        print(f"{color_map[f]} ■ {reset_color}", end=" ")
     print()
     
     
