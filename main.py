@@ -111,3 +111,6 @@ def main():
         print(f"The secret code was: {secret_code}")
     
     
+if __name__ == "__main__":
+    main()
+
